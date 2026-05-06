@@ -1,0 +1,53 @@
+Aether Broadcasting System - Technical Documentation
+
+1. Project Identity & UI/UX
+--------------------------
+- Brand Name: Aether (The Content Engine)
+- Aesthetic: "Cinematic-Premium" - Minimalist, high-performance, and professionally styled.
+- Visuals: Custom branding, glassmorphism overlays, dynamic status indicators, and a custom scrollbar system.
+- Performance: Skeleton loaders and optimized image handling (Next/Image) for all data-heavy sections.
+
+2. Project Structure (Scalability)
+--------------------------------
+src/
+  app/          -> Next.js 16+ App Router (File-based routing)
+  components/   -> Atomic UI components (categorized by UI, Common, Dashboard, Forms)
+  context/      -> Global Authentication & Session management
+  hooks/        -> Custom React hooks for reusable business logic
+  layouts/      -> DashboardLayout with integrated Role-based guards
+  services/     -> Service Layer (Clean separation: auth.service, content.service, approval.service)
+  utils/        -> Formatters, validation, and status-determination logic
+
+3. Authentication & Security
+--------------------------
+- Role-Based Protection: Implemented via DashboardLayout. Unauthorized role-crossing (e.g., teacher on principal routes) results in immediate redirection.
+- Safe State: User sessions are hydrated on mount from localStorage to prevent logout on page refresh.
+- Demo Accounts: teacher@test.com / principal@test.com (Password: password).
+
+4. API Integration & Replacement Design
+--------------------------------------
+- All data operations are abstracted into specialized service files. No direct API calls exist in components.
+- The system uses a dedicated "Client Instance" (api.js), making the service layer 100% ready for real REST API integration with no component changes required.
+- All async operations handle loading, success, and error states gracefully via try/catch and toast notifications.
+
+5. Data Persistence & Engineering Decisions
+-----------------------------------------
+- IndexedDB: Strategically chosen over localStorage to handle the 10MB file requirement. Since images are stored as Base64 blobs, they exceed standard browser storage quotas; IndexedDB provides a scalable solution.
+- Render Stability: Implemented a self-contained async pattern within useEffect hooks, protected by 'mounted' flags. This prevents stale state updates and memory leaks during asynchronous operations.
+- Image Preview: The upload form uses 'unoptimized' on preview images intentionally — Next.js Image optimization does not support Base64 data: URLs, which are used for local file previews before upload.
+
+6. Feature Set Highlights
+------------------------
+- Teacher: Drag-and-drop upload, professional date-picking (react-datepicker), and scheduling with Active/Scheduled/Expired broadcast status logic. My Content page shows From/To in a compact single-row layout.
+- Principal: Content moderation queue with mandatory rejection reasons, cinematic content preview modal with image-overlaid status badges, and global search/filter with a custom glassmorphism Select component.
+- Public Page: Auto-rotating cinematic player with real-time polling (10s interval) and ID-based diffing to prevent unnecessary re-renders during content updates.
+
+7. Technical Dependencies
+-----------------------
+- Next.js 16: Modern SSR/Client framework for routing and optimization.
+- Tailwind CSS: Utility-first styling with custom design tokens.
+- Framer Motion: Fluid animations and responsive card transitions.
+- React-DatePicker: Professional scheduling interface for content broadcast windows.
+- Lucide React: Unified iconography system.
+- Sonner: High-quality, non-blocking toast notifications.
+- date-fns: Lightweight date formatting for schedule display.

@@ -2,6 +2,12 @@
 
 A premium, role-based education platform designed for teachers to upload subject-based content and principals to moderate it for live broadcasting.
 
+## 🌐 Live Deployment
+
+**[https://aether-content-broadcasting.vercel.app](https://aether-content-broadcasting.vercel.app)**
+
+> Hosted on Vercel — No setup required, open the link and use the demo credentials below.
+
 ## 🚀 Features
 
 ### 👤 Authentication & Security
@@ -103,6 +109,12 @@ http://localhost:3000
 ### 📺 Public Live Page (No Login Required)
 
 Access the public broadcast page for any teacher directly:
+
+**Production:**
+```
+https://aether-content-broadcasting.vercel.app/live/teacher-1
+```
+**Local:**
 ```
 http://localhost:3000/live/teacher-1
 ```

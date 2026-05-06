@@ -51,3 +51,10 @@ src/
 - Lucide React: Unified iconography system.
 - Sonner: High-quality, non-blocking toast notifications.
 - date-fns: Lightweight date formatting for schedule display.
+
+8. Deployment
+------------
+- Platform: Vercel (Next.js native hosting)
+- Live URL: https://aether-content-broadcasting.vercel.app
+- Public Live Page: https://aether-content-broadcasting.vercel.app/live/teacher-1
+- Repository: https://github.com/rajivsharma25/Aether-Broadcasting-System

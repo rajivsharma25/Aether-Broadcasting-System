@@ -38,7 +38,7 @@ export default function UploadPage() {
     <DashboardLayout>
       <div className="">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900">Upload New Content</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-slate-900">Upload Content</h1>
           <p className="text-slate-500 font-medium">Share educational materials with your students.</p>
         </div>
 
